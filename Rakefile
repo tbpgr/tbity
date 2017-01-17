@@ -1,21 +1,11 @@
 require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-require 'rubocop/rake_task'
-require 'rubycritic/rake_task'
 require "bump/tasks"
 require "bump"
 
 RSpec::Core::RakeTask.new(:spec)
 
-RuboCop::RakeTask.new
-RubyCritic::RakeTask.new do |task|
-  task.paths = FileList['lib/**/*.rb']
-end
-
 task :default => :spec
-
-desc '静的解析、テストを全て実行'
-task full: %w(rubocop rubycritic spec)
 
 namespace :bump do
   module Bump

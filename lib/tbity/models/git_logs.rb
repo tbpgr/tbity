@@ -8,7 +8,7 @@ module Tbity::Models
       @path = path
     end
 
-    def load
+    def load(options = { before: nil, after: nil })
       stdout, = ::Open3.capture3("cd #{path} && git log --date=short --pretty=format:'%ad,%s'")
       stdout
     end
