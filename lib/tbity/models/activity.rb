@@ -13,6 +13,10 @@ module Tbity::Models
       def each
         @rows.each { |e| yield(e) }
       end
+
+      def all
+        @rows
+      end
     end
 
     def initialize(row)

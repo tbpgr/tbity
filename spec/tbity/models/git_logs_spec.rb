@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Tbity::Models::GitLogs do
   describe '.new' do
-    let(:path) { File.expand_path("#{__dir__}/../../fixture/repository") }
+    let(:path) { File.expand_path("#{__dir__}/../../fixture/logs") }
 
     it "path" do
       # given
@@ -16,8 +16,8 @@ describe Tbity::Models::GitLogs do
   end
 
   describe '.load' do
-    let(:path) { "#{__dir__}/../../fixture/logs" }
-    let(:logs) { File.read(File.expand_path(path), encoding: 'UTF-8') }
+    let(:path) { File.expand_path("#{__dir__}/../../fixture/logs") }
+    let(:logs) { File.read(path, encoding: 'UTF-8') }
 
     describe 'log' do
       context 'Before のみ' do
