@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Tbity::Models::Markdown::Decisions do
+describe Tbity::Models::Markdown::Empowers do
   describe '.new' do
     let(:path) { File.expand_path("#{__dir__}/../fixture/logs") }
 
@@ -11,10 +11,10 @@ describe Tbity::Models::Markdown::Decisions do
       activities = Tbity::Models::Activity.all
 
       # when
-      decisions = described_class.new(activities)
+      empowers = described_class.new(activities)
 
       # then
-      expect(decisions.activities).to eq(activities)
+      expect(empowers.activities).to eq(activities)
     end
   end
 
@@ -23,12 +23,11 @@ describe Tbity::Models::Markdown::Decisions do
     let(:logs) { File.read(path, encoding: 'UTF-8') }
     let(:expected_markdown) do
       <<-EOS
-## <i class="fa fa-user" style="font-size:1em;"></i> 意思決定
-自身の未来に強く影響を及ぼす意思決定を行った数を記録します。
-何をもって強く影響を及ぼすと考えるかどうかの基準は **主観** です。
+## <i class="fa fa-users" style="font-size:1em;"></i> 支援
+自分に関わる人物に対して支援を行った場合に記録します。
 
-### <i class="fa fa-cube" style="font-size:1em;"></i> 意思決定数
-<div style="font-size:75px;" class="animated infinite bounce">8</div>
+### <i class="fa fa-cube" style="font-size:1em;"></i> 支援数
+<div style="font-size:75px;" class="animated infinite bounce">13</div>
       EOS
     end
 
@@ -39,10 +38,10 @@ describe Tbity::Models::Markdown::Decisions do
       Tbity::Models::Activity.load(git_logs.load({}))
 
       # when
-      decisions = described_class.new(Tbity::Models::Activity.all)
+      empowers = described_class.new(Tbity::Models::Activity.all)
 
       # then
-      expect(decisions.to_markdown).to eq(expected_markdown)
+      expect(empowers.to_markdown).to eq(expected_markdown)
     end
   end
 end
