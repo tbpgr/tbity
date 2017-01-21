@@ -3,5 +3,6 @@ module Tbity::Models
     require 'tbity/models/markdown/base'
     require 'tbity/models/markdown/decisions'
     require 'tbity/models/markdown/empowers'
+    require 'tbity/models/markdown/knowledges'
   end
 end
