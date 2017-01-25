@@ -7,8 +7,8 @@ describe Tbity::Models::Markdown::Knowledges do
     let(:expected_markdown) do
       <<-EOS
 ## <i class="fa fa-graduation-cap" style="font-size:1em;"></i> 知識
-新たに得た知識を記録します。  
-鳥の記憶力を誇るのですぐに忘れるかもしれませんが、  
+新たに得た知識を記録します。<br>
+鳥の記憶力を誇るのですぐに忘れるかもしれませんが、<br>
 記憶強化・外部脳の意味でもこれを記録します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 知識数
@@ -33,10 +33,9 @@ describe Tbity::Models::Markdown::Knowledges do
       allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
       git_logs = Tbity::Models::GitLogs.new(path)
       Tbity::Models::Activity.load(git_logs.load({}))
-      knowledges = described_class.new(Tbity::Models::Activity.all)
 
       # when
-      knowledges.find_knowledges
+      knowledges = described_class.new(Tbity::Models::Activity.all)
 
       # then
       expect(knowledges.to_markdown).to eq(expected_markdown)

@@ -29,10 +29,9 @@ describe Tbity::Models::Markdown::Outputs do
       allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
       git_logs = Tbity::Models::GitLogs.new(path)
       Tbity::Models::Activity.load(git_logs.load({}))
-      outputs = described_class.new(Tbity::Models::Activity.all)
 
       # when
-      outputs.find_outputs
+      outputs = described_class.new(Tbity::Models::Activity.all)
 
       # then
       expect(outputs.to_markdown).to eq(expected_markdown)

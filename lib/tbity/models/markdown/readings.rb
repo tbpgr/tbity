@@ -14,6 +14,12 @@ module Tbity::Models::Markdown
 <%=readings%>
     EOS
 
+    def preset
+      find_readings
+    end
+
+    private
+
     def find_readings
       @readings = activities.select { |e| e.category == key && e.status == '完了' }
                 .reject { |e| e.sub_category.empty? }

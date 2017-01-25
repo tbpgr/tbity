@@ -3,6 +3,7 @@ require 'erb'
 module Tbity::Models::Markdown
   class Base
     attr_reader :activities
+    attr_reader :date
     attr_reader :count
 
     class << self
@@ -19,12 +20,18 @@ module Tbity::Models::Markdown
       end
     end
 
-    def initialize(activities)
+    def initialize(activities, date = Time.now)
       @activities = activities
+      @date = date
     end
 
     def to_markdown
+      preset
       ERB.new(template).result(binding)
+    end
+
+    def preset
+      # 継承側で to_markdown 前に差し込みたい処理があったらオーバーライドする
     end
 
     private

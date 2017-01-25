@@ -25,6 +25,12 @@ module Tbity::Models::Markdown
 <%=outputs%>
     EOS
 
+    def preset
+      find_outputs
+    end
+
+    private
+
     def find_outputs
       @outputs = activities.select { |e| e.category == key }
             .reject { |e| e.sub_category.empty? }

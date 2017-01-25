@@ -7,7 +7,7 @@ describe Tbity::Models::Markdown::Progresses do
     let(:expected_markdown) do
       <<-EOS
 ## <i class="fa fa-bar-chart" style="font-size:1em;"></i> 進捗
-個人活動の進捗に影響を与えるタスクを実施した日数を記録します。
+個人活動の進捗に影響を与えるタスクを実施した日数を記録します。<br>
 これは活動における「メインストーリー」に関わる進捗に限定します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 進捗数
