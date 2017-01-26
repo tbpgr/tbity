@@ -6,8 +6,9 @@ describe Tbity::Models::Markdown::Empowers do
 
     it do
       # given
-      git_logs = Tbity::Models::GitLogs.new(path)
-      Tbity::Models::Activity.load(git_logs.load({}))
+      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
+      git_logs = ::Tbity::Models::GitLogs.new(path, period)
+      Tbity::Models::Activity.load(git_logs.load)
       activities = Tbity::Models::Activity.all
 
       # when
@@ -34,8 +35,9 @@ describe Tbity::Models::Markdown::Empowers do
     it do
       # given
       allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
-      git_logs = Tbity::Models::GitLogs.new(path)
-      Tbity::Models::Activity.load(git_logs.load({}))
+      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
+      git_logs = ::Tbity::Models::GitLogs.new(path, period)
+      Tbity::Models::Activity.load(git_logs.load)
 
       # when
       empowers = described_class.new(Tbity::Models::Activity.all)

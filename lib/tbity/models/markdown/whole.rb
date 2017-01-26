@@ -1,3 +1,5 @@
+require "date"
+
 module Tbity::Models::Markdown
   class Whole
     attr_reader :date
@@ -26,7 +28,7 @@ module Tbity::Models::Markdown
 <%=challenges%>
     EOS
 
-    def initialize(activities, date = Time.now)
+    def initialize(activities, date = DateTime.now)
       @activities = activities
       @date = date
     end

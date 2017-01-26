@@ -1,10 +1,30 @@
 require 'spec_helper'
 
-describe Tbity::Models::Markdown::Whole do
-  describe '#to_markdown' do
-    let(:path) { File.expand_path("#{__dir__}/../../../fixture/logs") }
+describe Tbity::Actions::Markdown do
+  describe '#initialize' do
+    let(:path) { File.expand_path("#{__dir__}/../../fixture/logs") }
     let(:logs) { File.read(path, encoding: 'UTF-8') }
-    let(:expected_markdown) do
+    let(:yyyymm) { "201701" }
+
+    it "正常系" do
+      # given
+      allow_any_instance_of(Tbity::Models::GitLogs).to receive(:load).and_return(logs)
+      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
+
+      # when
+      action = described_class.new(path, yyyymm)
+
+      # then
+      expect(action.path).to eq(path)
+      expect(action.yyyymm).to eq(yyyymm)
+      expect(action.period).to eq(period)
+    end
+  end
+
+  describe '#run' do
+    let(:path) { File.expand_path("#{__dir__}/../../fixture/logs") }
+    let(:logs) { File.read(path, encoding: 'UTF-8') }
+    let(:expected) do
       <<-EOS
 [冒険記録]Lv 1 - てぃーびー 2017 年 1 月 冒険記録 - 手動入力のサブタイトル
 
@@ -108,16 +128,15 @@ describe Tbity::Models::Markdown::Whole do
 
     it do
       # given
-      allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
-      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
-      git_logs = ::Tbity::Models::GitLogs.new(path, period)
-      Tbity::Models::Activity.load(git_logs.load)
+      allow_any_instance_of(Tbity::Models::GitLogs).to receive(:load).and_return(logs)
+      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31, 23, 59, 59))
+      action = described_class.new(path, "201701")
 
       # when
-      whole = described_class.new(Tbity::Models::Activity.all, Time.new(2017, 1))
+      actual = action.run
 
       # then
-      expect(whole.to_markdown).to eq(expected_markdown)
+      expect(actual).to eq(expected)
     end
   end
 end

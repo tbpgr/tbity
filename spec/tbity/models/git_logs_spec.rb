@@ -6,9 +6,10 @@ describe Tbity::Models::GitLogs do
 
     it "path" do
       # given
+      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
 
       # when
-      git_logs = described_class.new(path)
+      git_logs = described_class.new(path, period)
 
       # then
       expect(git_logs.path).to eq(path)
@@ -36,7 +37,8 @@ describe Tbity::Models::GitLogs do
         it do
           # given
           allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
-          git_logs = described_class.new(File.expand_path(path))
+          period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
+          git_logs = described_class.new(File.expand_path(path), period)
 
           # when
           actual_logs = git_logs.load
