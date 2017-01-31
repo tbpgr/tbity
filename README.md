@@ -24,11 +24,6 @@ Or install it yourself as:
 $ tbity markdown
 ```
 
-### tree
-```sh
-$ tbity tree
-```
-
 ### metrics
 ```sh
 $ tbity metrics
