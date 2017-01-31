@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Empowers < Base
     key '支援'
     template <<-EOS
@@ -6,7 +6,7 @@ module Tbity::Models::Markdown
 自分に関わる人物に対して支援を行った場合に記録します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 支援数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
     EOS
   end
 end

@@ -1,7 +1,9 @@
-module Tbity::Models::Markdown
+require 'date'
+
+module Tbity::Models::Factors
   class Levels < Base
     # 2016/12月をレベル1とする
-    START = Time.new(2016, 12)
+    START = DateTime.new(2016, 12)
     attr_reader :level
 
     key '挑戦'

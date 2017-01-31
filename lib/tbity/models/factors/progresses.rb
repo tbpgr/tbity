@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Progresses < Base
     key '進捗'
     template <<-EOS
@@ -7,7 +7,7 @@ module Tbity::Models::Markdown
 これは活動における「メインストーリー」に関わる進捗に限定します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 進捗数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
     EOS
   end
 end

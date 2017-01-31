@@ -10,8 +10,8 @@ module Tbity
       end
     end
 
-    desc "markdown [YYYYMM]", "月次冒険記録Markdownを出力する"
-    def markdown(yyyymm)
+    desc "factors [YYYYMM]", "月次冒険記録Factorsを出力する"
+    def factors(yyyymm)
       path = ::Dir.pwd
       action = ::Tbity::Actions::Markdown.new(path, yyyymm)
       puts action.run

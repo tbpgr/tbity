@@ -1,10 +1,9 @@
 require 'erb'
 
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Base
     attr_reader :activities
     attr_reader :date
-    attr_reader :count
 
     class << self
       def key(key)
@@ -20,7 +19,7 @@ module Tbity::Models::Markdown
       end
     end
 
-    def initialize(activities, date = Time.now)
+    def initialize(activities, date = DateTime.now)
       @activities = activities
       @date = date
     end
@@ -30,14 +29,14 @@ module Tbity::Models::Markdown
       ERB.new(template).result(binding)
     end
 
-    def preset
-      # 継承側で to_markdown 前に差し込みたい処理があったらオーバーライドする
+    def count
+      activities.count { |e| e.category == key }
     end
 
     private
 
-    def count_category
-      activities.count { |e| e.category == key }
+    def preset
+      # 継承側で to_markdown 前に差し込みたい処理があったらオーバーライドする
     end
   end
 end

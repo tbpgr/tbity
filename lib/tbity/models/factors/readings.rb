@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Readings < Base
     attr_reader :readings
 
@@ -6,7 +6,7 @@ module Tbity::Models::Markdown
     template <<-EOS
 ## <i class="fa fa-book" style="font-size:1em;"></i> 読書
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 読書回数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
 
 ### <i class="fa fa-list" style="font-size:1em;"></i> 読書記録
 読了した書籍を記録します。

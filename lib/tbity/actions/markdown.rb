@@ -17,7 +17,7 @@ module Tbity::Actions
     def run
       git_logs = ::Tbity::Models::GitLogs.new(path, period)
       ::Tbity::Models::Activity.load(git_logs.load)
-      whole = ::Tbity::Models::Markdown::Whole.new(Tbity::Models::Activity.all, period.from)
+      whole = ::Tbity::Models::Factors::Whole.new(Tbity::Models::Activity.all, period.from)
       whole.to_markdown
     end
   end

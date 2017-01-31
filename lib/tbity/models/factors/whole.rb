@@ -1,6 +1,6 @@
 require "date"
 
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Whole
     attr_reader :date
     attr_reader :activities
@@ -12,7 +12,7 @@ module Tbity::Models::Markdown
 
 てぃーびーの <%=date.year%> 年 <%=date.month%> 月の冒険の記録をまとめます。
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<!-- more -->
 
 ## <i class="fa fa-comments" style="font-size:1em;"></i> 雑感
 ここは手動の雑感コメント欄
@@ -42,14 +42,14 @@ module Tbity::Models::Markdown
     %w(Challenges Decisions Levels Empowers Progresses Knowledges Readings Tools Outputs).each do |klass|
       instance_eval do
         define_method klass.downcase do
-          obj = Object.const_get("::Tbity::Models::Markdown::#{klass}").new(activities, date)
+          obj = Object.const_get("::Tbity::Models::Factors::#{klass}").new(activities, date)
           obj.to_markdown
         end
       end
     end
 
     def level
-      ::Tbity::Models::Markdown::Levels.new(activities, date).load_level
+      ::Tbity::Models::Factors::Levels.new(activities, date).load_level
     end
   end
 end

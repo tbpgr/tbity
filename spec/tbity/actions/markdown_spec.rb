@@ -32,7 +32,7 @@ describe Tbity::Actions::Markdown do
 
 てぃーびーの 2017 年 1 月の冒険の記録をまとめます。
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+<!-- more -->
 
 ## <i class="fa fa-comments" style="font-size:1em;"></i> 雑感
 ここは手動の雑感コメント欄

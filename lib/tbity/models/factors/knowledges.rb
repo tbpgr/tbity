@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Knowledges < Base
     attr_reader :knowledges
 
@@ -10,7 +10,7 @@ module Tbity::Models::Markdown
 記憶強化・外部脳の意味でもこれを記録します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> 知識数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
 
 ### <i class="fa fa-list" style="font-size:1em;"></i> 知識リスト
 <%=knowledges%>

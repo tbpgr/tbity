@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Outputs < Base
     attr_reader :outputs
     SUB_CATEGORY_CONVERTER = {
@@ -15,7 +15,7 @@ module Tbity::Models::Markdown
 プログラム、ブログ記事、プレゼンなどのアウトプット数を記録します。
 
 ### <i class="fa fa-cube" style="font-size:1em;"></i> アウトプット数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
 
 ### <i class="fa fa-list" style="font-size:1em;"></i> アウトプット記録
 アウトプットしたものを記録します

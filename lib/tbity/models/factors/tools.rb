@@ -1,4 +1,4 @@
-module Tbity::Models::Markdown
+module Tbity::Models::Factors
   class Tools < Base
     attr_reader :tools
 
@@ -6,7 +6,7 @@ module Tbity::Models::Markdown
     template <<-EOS
 ## <i class="fa fa-wrench" style="font-size:1em;"></i> ツール
 ### <i class="fa fa-cube" style="font-size:1em;"></i> ツール学習数
-<div style="font-size:75px;" class="animated infinite bounce"><%=count_category%></div>
+<div style="font-size:75px;" class="animated infinite bounce"><%=count%></div>
 
 ### <i class="fa fa-list" style="font-size:1em;"></i> ツール記録
 学習したツールは以下です
