@@ -16,7 +16,6 @@ describe Tbity::Actions::Markdown do
 
       # then
       expect(action.path).to eq(path)
-      expect(action.yyyymm).to eq(yyyymm)
       expect(action.period).to eq(period)
     end
   end

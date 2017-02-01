@@ -1,10 +1,18 @@
 require 'spec_helper'
 
 describe Tbity::Models::Factors::Whole do
+  let(:instance) do
+    path = File.expand_path("#{__dir__}/../../../fixture/logs")
+    logs = File.read(path, encoding: 'UTF-8')
+    allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
+    period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
+    git_logs = ::Tbity::Models::GitLogs.new(path, period)
+    Tbity::Models::Activity.load(git_logs.load)
+    described_class.new(Tbity::Models::Activity.all, DateTime.new(2017, 1))
+  end
+
   describe '#to_markdown' do
-    let(:path) { File.expand_path("#{__dir__}/../../../fixture/logs") }
-    let(:logs) { File.read(path, encoding: 'UTF-8') }
-    let(:expected_markdown) do
+    let(:expected) do
       <<-EOS
 [冒険記録]Lv 1 - てぃーびー 2017 年 1 月 冒険記録 - 手動入力のサブタイトル
 
@@ -106,18 +114,28 @@ describe Tbity::Models::Factors::Whole do
       EOS
     end
 
-    it do
-      # given
-      allow(::Open3).to receive(:capture3).and_return([logs, 'stderr', 0])
-      period = ::Tbity::Models::Period.new(from: DateTime.new(2017, 1, 1), to: DateTime.new(2017, 1, 31))
-      git_logs = ::Tbity::Models::GitLogs.new(path, period)
-      Tbity::Models::Activity.load(git_logs.load)
+    it { expect(instance.to_markdown).to eq(expected) }
+  end
 
-      # when
-      whole = described_class.new(Tbity::Models::Activity.all, Time.new(2017, 1))
-
-      # then
-      expect(whole.to_markdown).to eq(expected_markdown)
+  describe '#to_metrics_with_header' do
+    let(:expected) do
+      <<-EOS
+yyyymm\tChallenges\tDecisions\tEmpowers\tKnowledges\tLevels\tOutputs\tProgresses\tReadings\tTools
+2017/01\t2\t8\t13\t10\t\t9\t11\t7\t9
+      EOS
     end
+
+    it { expect(instance.to_metrics_with_header).to eq(expected.chomp) }
+  end
+
+
+  describe '#to_metrics_without_header' do
+    let(:expected) do
+      <<-EOS
+2017/01\t2\t8\t13\t10\t\t9\t11\t7\t9
+      EOS
+    end
+
+    it { expect(instance.to_metrics_without_header).to eq(expected.chomp) }
   end
 end
