@@ -1,4 +1,5 @@
 require "tbity/version"
+require 'date'
 require 'tbity/ext'
 require 'tbity/models'
 require 'tbity/actions'
