@@ -26,6 +26,9 @@ module Tbity::Models::Factors
 <%=tools%>
 <%=outputs%>
 <%=challenges%>
+
+## <i class="fa fa-bar-chart" style="font-size:1em;"></i> 推移
+<iframe src="https://docs.google.com/spreadsheets/d/1ALUydGUj6-4RSvTjvb2AuiH_eeZQJ24mRB79UN61U1s/pubhtml?widget=true&amp;headers=false" style="width:1100px;height:200px;"></iframe>
     EOS
 
     METRICS_FACTORS = %w(yyyymm Challenges Decisions Empowers Knowledges Levels Outputs Progresses Readings Tools)
